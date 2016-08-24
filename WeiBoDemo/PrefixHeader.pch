@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  WeiBoDemo
+//
+//  Created by Ibokan on 16/8/8.
+//  Copyright © 2016年 king-mo. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define kAppKey @"3253936467"
+#define kAppRedirectURI @"https://api.weibo.com/oauth2/default.html"
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define UICOLOR(A,B,C,D) [UIColor colorWithRed:A/255.0 green:B/255.0 blue:C/255.0 alpha:D]
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
