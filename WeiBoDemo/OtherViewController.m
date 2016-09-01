@@ -15,6 +15,10 @@
 {
     NSMutableArray *locatiaonData;
     UITableView *locationTableView;
+    NSArray *sharePageData;
+    UITableView *sharePageTableView;
+    UIImageView *selectedImage;
+    
 }
 @end
 
@@ -26,7 +30,6 @@
         case OtherViewControllerTypeForLocation:{
             locatiaonData =[NSMutableArray array];
             [self setLocationPage];
-            
             locationTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
             locationTableView.delegate = self;
             locationTableView.dataSource = self;
@@ -34,7 +37,20 @@
             locationTableView.backgroundColor = [UIColor clearColor];
         }
             break;
+        case OtherViewControllerTypeForSharePage:{
+            sharePageData = @[@[@"公开",@"好友圈",@"仅自己可见"],@[@"选择好友"]];
+            [self setSharePage];
+            sharePageTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
+            sharePageTableView.delegate = self;
+            sharePageTableView.dataSource = self;
+            sharePageTableView.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:sharePageTableView];
+        }
+            break;
+        case OtherViewControllerTypeForMenition:{
             
+        }
+            break;
         default:
             break;
     }
@@ -49,11 +65,16 @@
     [WBHttpRequest requestWithAccessToken:access_token url:@"https://api.weibo.com/2/place/nearby/pois.json" httpMethod:@"GET" params:@{@"lat":[[NSUserDefaults standardUserDefaults]objectForKey:@"lat"],@"long":[[NSUserDefaults standardUserDefaults]objectForKey:@"long"]} delegate:self withTag:@"2000"];
     
 }
+-(void)setSharePage{
+    self.title = @"选择分享范围";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(leftButtonAction:)];
+    
+}
 -(void)request:(WBHttpRequest *)request didReceiveResponse:(NSURLResponse *)response{
-    NSLog(@"response = %@",response);
+    
 }
 -(void)request:(WBHttpRequest *)request didFailWithError:(NSError *)error{
-    NSLog(@"error = %@",error);
+    
 }
 -(void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result{
     
@@ -61,7 +82,6 @@
 -(void)request:(WBHttpRequest *)request didFinishLoadingWithDataResult:(NSData *)data{
     switch (_type) {
         case OtherViewControllerTypeForLocation:{
-            
             //数据读取
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             NSArray *array = dic[@"pois"];
@@ -76,7 +96,6 @@
             }
             [locationTableView reloadData];
         }
-            
             break;
             //        case <#constant#>:
             //            <#statements#>
@@ -99,12 +118,29 @@
 
 #pragma mark tableView Setting
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    switch (_type) {
+        case OtherViewControllerTypeForLocation:{
+            return 1;
+        }
+            break;
+        case OtherViewControllerTypeForSharePage:{
+            return sharePageData.count;
+        }
+            
+        default:
+            break;
+    }
+    return nil;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     switch (_type) {
         case OtherViewControllerTypeForLocation:{
             return locatiaonData.count+1;
+        }
+            break;
+        case OtherViewControllerTypeForSharePage:{
+            NSArray *array = sharePageData[section];
+            return array.count;
         }
             break;
             
@@ -141,6 +177,33 @@
             
         }
             break;
+        case OtherViewControllerTypeForSharePage:{
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
+            if (!cell) {
+                cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"reuse"];
+            }
+            selectedImage = [[UIImageView alloc]initWithFrame:CGRectMake(10, 15, 20, 20)];
+            selectedImage.layer.cornerRadius = 10;
+            selectedImage.layer.masksToBounds = YES;
+            selectedImage.layer.borderWidth = 1;
+            selectedImage.layer.borderColor = [UIColor grayColor].CGColor;
+            
+            NSArray *array = sharePageData[indexPath.section];
+            cell.textLabel.text = array[indexPath.row];
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    cell.detailTextLabel.text = @"所有人可见";
+                }else if (indexPath.row == 1){
+                    cell.detailTextLabel.text = @"相互关注好友可见";
+                }
+            }else if (indexPath.section){
+                selectedImage.image = [UIImage imageNamed:@"add"];
+            }
+            cell.accessoryView = selectedImage;
+            sharePageTableView.rowHeight = 50;
+            return cell;
+        }
+            break;
             
         default:
             break;
@@ -148,7 +211,20 @@
     return nil;
 }
 
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (_type) {
+        case OtherViewControllerTypeForLocation:{
+            
+        }
+            break;
+        case OtherViewControllerTypeForSharePage:{
+            selectedImage.image = [UIImage imageNamed:@"V"];
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [MBProgressHUD hideHUDForView:self.view animated:YES];

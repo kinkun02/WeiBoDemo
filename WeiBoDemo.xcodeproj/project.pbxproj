@@ -12,6 +12,10 @@
 		BC1A5D1E1D66F3DA00E658BF /* AddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC1A5D1C1D66F3DA00E658BF /* AddFriendTableViewCell.m */; };
 		BC1A5D1F1D66F3DA00E658BF /* AddFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1A5D1D1D66F3DA00E658BF /* AddFriendTableViewCell.xib */; };
 		BC297BCD1D5C323B001B9CCA /* WebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC297BCC1D5C323B001B9CCA /* WebViewViewController.m */; };
+		BC5BEF001D74168D00E135DD /* SelectPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BEEFA1D74168D00E135DD /* SelectPhotoViewController.m */; };
+		BC5BEF011D74168D00E135DD /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BEEFC1D74168D00E135DD /* PhotoModel.m */; };
+		BC5BEF021D74168D00E135DD /* PhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5BEEFE1D74168D00E135DD /* PhotoCollectionViewCell.m */; };
+		BC5BEF031D74168D00E135DD /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5BEEFF1D74168D00E135DD /* PhotoCollectionViewCell.xib */; };
 		BC87D29B1D582A3900E24E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BC87D29A1D582A3900E24E41 /* main.m */; };
 		BC87D29E1D582A3900E24E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BC87D29D1D582A3900E24E41 /* AppDelegate.m */; };
 		BC87D2A11D582A3900E24E41 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC87D2A01D582A3900E24E41 /* ViewController.m */; };
@@ -72,6 +76,13 @@
 		BC1A5D1D1D66F3DA00E658BF /* AddFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendTableViewCell.xib; sourceTree = "<group>"; };
 		BC297BCB1D5C323B001B9CCA /* WebViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewViewController.h; sourceTree = "<group>"; };
 		BC297BCC1D5C323B001B9CCA /* WebViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewViewController.m; sourceTree = "<group>"; };
+		BC5BEEF91D74168D00E135DD /* SelectPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoViewController.h; sourceTree = "<group>"; };
+		BC5BEEFA1D74168D00E135DD /* SelectPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoViewController.m; sourceTree = "<group>"; };
+		BC5BEEFB1D74168D00E135DD /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		BC5BEEFC1D74168D00E135DD /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		BC5BEEFD1D74168D00E135DD /* PhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		BC5BEEFE1D74168D00E135DD /* PhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		BC5BEEFF1D74168D00E135DD /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		BC87D2961D582A3900E24E41 /* WeiBoDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiBoDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC87D29A1D582A3900E24E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BC87D29C1D582A3900E24E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -185,6 +196,20 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		BC5BEEF81D74165700E135DD /* SelectedPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				BC5BEEF91D74168D00E135DD /* SelectPhotoViewController.h */,
+				BC5BEEFA1D74168D00E135DD /* SelectPhotoViewController.m */,
+				BC5BEEFB1D74168D00E135DD /* PhotoModel.h */,
+				BC5BEEFC1D74168D00E135DD /* PhotoModel.m */,
+				BC5BEEFD1D74168D00E135DD /* PhotoCollectionViewCell.h */,
+				BC5BEEFE1D74168D00E135DD /* PhotoCollectionViewCell.m */,
+				BC5BEEFF1D74168D00E135DD /* PhotoCollectionViewCell.xib */,
+			);
+			name = SelectedPhoto;
+			sourceTree = "<group>";
+		};
 		BC87D28D1D582A3900E24E41 = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +284,7 @@
 			children = (
 				BC88C6851D6A8E7900727044 /* OtherViewController.h */,
 				BC88C6861D6A8E7900727044 /* OtherViewController.m */,
+				BC5BEEF81D74165700E135DD /* SelectedPhoto */,
 				BCC65A881D6C38C6000F6ADF /* Model */,
 			);
 			name = OtherViewController;
@@ -511,6 +537,7 @@
 				BC1A5D1F1D66F3DA00E658BF /* AddFriendTableViewCell.xib in Resources */,
 				BC87D2AC1D582A3900E24E41 /* LaunchScreen.storyboard in Resources */,
 				BCDD1D421D5985420009EB5A /* my_background.png in Resources */,
+				BC5BEF031D74168D00E135DD /* PhotoCollectionViewCell.xib in Resources */,
 				BC87D2A41D582A3900E24E41 /* Main.storyboard in Resources */,
 				BCA8E1721D63072F00A7EF9D /* Assets.xcassets in Resources */,
 			);
@@ -590,8 +617,10 @@
 				BC297BCD1D5C323B001B9CCA /* WebViewViewController.m in Sources */,
 				BCDD1D4C1D59D95C0009EB5A /* SettingViewController.m in Sources */,
 				BCDD1D2E1D59724B0009EB5A /* IssueViewController.m in Sources */,
+				BC5BEF021D74168D00E135DD /* PhotoCollectionViewCell.m in Sources */,
 				BCC65A871D6C38BA000F6ADF /* OtherPageModel.m in Sources */,
 				BC1A5D191D66EDD800E658BF /* AddFriendsViewController.m in Sources */,
+				BC5BEF001D74168D00E135DD /* SelectPhotoViewController.m in Sources */,
 				BC88C6871D6A8E7900727044 /* OtherViewController.m in Sources */,
 				BCDD1D401D5974810009EB5A /* MainNavigationViewController.m in Sources */,
 				BCDD1D491D59CA790009EB5A /* SettingBeforeViewController.m in Sources */,
@@ -606,6 +635,7 @@
 				BCE3C74A1D5AD37F00BD20D2 /* User.m in Sources */,
 				BCE3C74E1D5B0F7500BD20D2 /* MyTableViewCell.m in Sources */,
 				BCDD1D351D5973140009EB5A /* WeiboViewController.m in Sources */,
+				BC5BEF011D74168D00E135DD /* PhotoModel.m in Sources */,
 				BCDD1D3B1D5973940009EB5A /* MainTabBarViewController.m in Sources */,
 				BCE3C75E1D5B477F00BD20D2 /* PrivacyViewController.m in Sources */,
 				BCDD1D321D59726B0009EB5A /* HomeViewController.m in Sources */,

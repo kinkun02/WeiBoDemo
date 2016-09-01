@@ -10,6 +10,8 @@
 #import <UIImageView+YYWebImage.h>
 #import "User.h"
 #import "OtherViewController.h"
+#import "PhotoModel.h"
+#import "SelectPhotoViewController.h"
 
 @interface FeedbackViewController ()<UITextViewDelegate,UIScrollViewDelegate>
 {
@@ -18,6 +20,9 @@
     UITextView *theTextView;
     UIView *toolView;
     UILabel *textViewPlaceholder;
+    int index;
+    NSMutableArray *selectedArray;
+    UIView *selectPhotoView;
 }
 @end
 
@@ -128,6 +133,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
+    
 }
 
 -(void)leftButtonAction:(UIBarButtonItem *)sender{
@@ -139,13 +145,49 @@
 
 -(void)toolBarSubviewAction:(UIButton *)sender{
     if (sender.tag == 100) {
-        NSLog(@"1");
+        selectedArray = [NSMutableArray array];
+        SelectPhotoViewController *selectPhotoVC = [SelectPhotoViewController new];
+        selectPhotoVC.imageHandle = ^(NSArray *images){
+            NSLog(@"%@",images);
+            selectedArray = [NSMutableArray arrayWithArray:images];
+            theTextView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT/4);
+            selectPhotoView = [[UIView alloc]initWithFrame:CGRectMake(30, SCREEN_HEIGHT/4, SCREEN_WIDTH-60, SCREEN_WIDTH-60)];
+            [self.view addSubview:selectPhotoView];
+            index = 0;
+            if (selectedArray.count <= 9) {
+                for (int i=0; i<3; i++) {
+                    for (int j=0; j<3 && index<selectedArray.count; j++) {
+                        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(j*((SCREEN_WIDTH-60)/3), i*((SCREEN_WIDTH-60)/3), ((SCREEN_WIDTH-60)/3), ((SCREEN_WIDTH-60)/3))];
+                        PhotoModel *m = selectedArray[index];
+                        imageView.image = m.image;
+                        
+                        UIButton *removeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                        removeButton.frame = CGRectMake(((SCREEN_WIDTH-60)/3)-(((SCREEN_WIDTH-60)/3)/8), 0, ((SCREEN_WIDTH-60)/3)/8, ((SCREEN_WIDTH-60)/3)/8);
+                        [removeButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+                        [removeButton addTarget:self action:@selector(removeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+                        imageView.userInteractionEnabled = YES;
+                        [selectPhotoView addSubview:imageView];
+                        [imageView addSubview:removeButton];
+                        index++;
+                    }
+                }
+            }
+        };
+        
+        [self.navigationController pushViewController:selectPhotoVC animated:YES];
+        
     }else if (sender.tag == 101){
-        NSLog(@"2");
+        OtherViewController *otherViewVC = [OtherViewController new];
+        otherViewVC.type = OtherViewControllerTypeForMenition;
+        [self.navigationController pushViewController:otherViewVC animated:YES];
     }else if(sender.tag == 102){
         NSLog(@"3");
     }
 }
+-(void)removeButtonAction:(UIButton *)sender{
+    
+}
+
 -(void)toolBarEmojiButtonAction:(UIButton *)sender{
     NSLog(@"4");
 }
@@ -160,7 +202,9 @@
     [self.navigationController pushViewController:locationVC animated:YES];
 }
 -(void)shareButtonAction:(UIButton *)sender{
-    
+    OtherViewController *otherVC = [OtherViewController new];
+    otherVC.type = OtherViewControllerTypeForSharePage;
+    [self.navigationController pushViewController:otherVC animated:YES];
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     theTextView.text = @"";

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="144"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="144"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOA-hb-kMa">
+                        <rect key="frame" x="0.0" y="0.0" width="130" height="144"/>
+                        <connections>
+                            <action selector="selectButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Eq2-ku-qln"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wUm-60-KMV">
+                        <rect key="frame" x="0.0" y="0.0" width="130" height="144"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IKK-BI-7t3">
+                        <rect key="frame" x="110" y="0.0" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="AKv-ox-74P"/>
+                            <constraint firstAttribute="width" constant="20" id="Gjp-DI-Kjh"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="qOA-hb-kMa" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CHz-LJ-fs9"/>
+                <constraint firstItem="wUm-60-KMV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="CSF-fO-A9Q"/>
+                <constraint firstAttribute="trailing" secondItem="IKK-BI-7t3" secondAttribute="trailing" id="XHe-wp-DUD"/>
+                <constraint firstAttribute="trailing" secondItem="qOA-hb-kMa" secondAttribute="trailing" id="dlM-12-WGm"/>
+                <constraint firstAttribute="bottom" secondItem="qOA-hb-kMa" secondAttribute="bottom" id="f1L-Rl-3Tr"/>
+                <constraint firstItem="qOA-hb-kMa" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hjO-hw-OyM"/>
+                <constraint firstItem="wUm-60-KMV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jU8-0T-Jrp"/>
+                <constraint firstAttribute="bottom" secondItem="wUm-60-KMV" secondAttribute="bottom" id="tCF-4q-EUr"/>
+                <constraint firstAttribute="trailing" secondItem="wUm-60-KMV" secondAttribute="trailing" id="vpu-F3-P3c"/>
+                <constraint firstItem="IKK-BI-7t3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="xgM-dM-NUr"/>
+            </constraints>
+            <size key="customSize" width="130" height="144"/>
+            <connections>
+                <outlet property="photoImageview" destination="wUm-60-KMV" id="0nO-cC-qhN"/>
+                <outlet property="selectView" destination="IKK-BI-7t3" id="NR3-xH-Onx"/>
+                <outlet property="selectedButton" destination="qOA-hb-kMa" id="3hO-kg-gA1"/>
+            </connections>
+            <point key="canvasLocation" x="363" y="359"/>
+        </collectionViewCell>
+    </objects>
+</document>
